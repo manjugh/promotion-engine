@@ -14,22 +14,26 @@ public class PromotionEngineImpl implements PromotionEngine {
 
     @Override
     public Amount calculateTotalOrderValue(final ShoppingCart shoppingCart) {
-        if(shoppingCart == null || shoppingCart.isEmpty()){
+        if (isShoppingCartEmpty(shoppingCart)) {
             throw new IllegalArgumentException("Empty Cart");
         }
         Amount totalOrderAmount = shoppingCart.calculateTotalOrderValue();
-        BigDecimal discount = getTotalDiscountAmount(shoppingCart);
-        return totalOrderAmount.subtract(discount);
+        return totalOrderAmount.subtract(getTotalDiscountAmount(shoppingCart));
+    }
+
+    private boolean isShoppingCartEmpty(final ShoppingCart shoppingCart) {
+        return shoppingCart == null || shoppingCart.isEmpty();
     }
 
     private BigDecimal getTotalDiscountAmount(final ShoppingCart shoppingCart) {
-        BigDecimal discount = BigDecimal.ZERO;
-        if (!promotionRules.isEmpty()) {
-            for (PromotionRule promotionRule : promotionRules) {
-                discount = discount.add(promotionRule.calculatePromotionDiscount(shoppingCart).getValue());
-            }
-
+        if (promotionRules.isEmpty()) {
+            return BigDecimal.ZERO;
         }
-        return discount;
+        return executePromotionRules(shoppingCart);
+    }
+
+    private BigDecimal executePromotionRules(final ShoppingCart shoppingCart) {
+        return promotionRules.stream().map(promotionRule -> promotionRule.calculatePromotionDiscount(shoppingCart).getValue())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

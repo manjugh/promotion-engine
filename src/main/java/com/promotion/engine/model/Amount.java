@@ -16,11 +16,11 @@ public class Amount {
     private final BigDecimal value;
 
     public Amount subtract(final BigDecimal amount) {
-        return Amount.with().value(setScale(value.subtract(amount))).build();
+        return amount == null ? this : Amount.with().value(setScale(value.subtract(amount))).build();
     }
 
     public Amount multiply(final BigDecimal amount) {
-        return Amount.with().value(setScale(value.multiply(amount))).build();
+        return amount == null ? this : Amount.with().value(setScale(value.multiply(amount))).build();
     }
 
     private BigDecimal setScale(final BigDecimal amount) {
