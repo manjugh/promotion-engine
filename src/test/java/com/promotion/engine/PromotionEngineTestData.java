@@ -8,6 +8,7 @@ import com.promotion.engine.rules.PromotionRule;
 import com.promotion.engine.rules.SingleItemPromotionRule;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 final class PromotionEngineTestData {
@@ -23,7 +24,7 @@ final class PromotionEngineTestData {
     }
 
     static Amount buildAmount(final BigDecimal amount) {
-        return Amount.with().value(amount).build();
+        return Amount.with().value(amount.setScale(2, RoundingMode.HALF_UP)).build();
     }
 
     static ShoppingCart buildShoppingCartScenarioA() {
