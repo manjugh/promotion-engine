@@ -1,10 +1,9 @@
 package com.promotion.engine;
 
 import com.promotion.engine.model.Amount;
-
-import java.math.BigDecimal;
+import com.promotion.engine.model.ShoppingCart;
 
 public interface PromotionEngine {
 
-    Amount calculateTotalOrderValue();
+    Amount calculateTotalOrderValue(ShoppingCart shoppingCart);
 }
