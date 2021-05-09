@@ -8,10 +8,14 @@
 
 2. buy SKU 1 & SKU 2 for a fixed price ( C + D = 30 )
 
-# Tech stack used 
+# Technology stack used 
 JAVA 11
 Junit 5
 Maven 3.6
 
-# Running the tests
+## Verifying the promotion engine implementation using Unit tests
+
+PromotionEngineTest class contains test for calculating total order values of the cart items.
+
+
 
