@@ -7,7 +7,6 @@ import java.util.List;
 
 @Builder(builderMethodName = "with")
 @Getter
-
 public class ShoppingCart {
     private final List<Item> items;
 }

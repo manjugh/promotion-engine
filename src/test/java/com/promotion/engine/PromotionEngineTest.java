@@ -4,6 +4,8 @@ package com.promotion.engine;
 import com.promotion.engine.model.Amount;
 import com.promotion.engine.model.Item;
 import com.promotion.engine.model.ShoppingCart;
+import com.promotion.engine.rules.PromotionRule;
+import com.promotion.engine.rules.SingleItemPromotionRule;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,10 +16,16 @@ import java.util.List;
 public class PromotionEngineTest extends Assertions {
 
     @Test
-            @DisplayName("Calculate Total order  with Shopping cart A(1)+B(1)+C(1)+D(1), returns Total order value = 100")
+    @DisplayName("Calculate Total order  with Shopping cart A(1)+B(1)+C(1)+D(1), returns Total order value = 100")
     void testScenarioA() {
-        PromotionEngine promotionEngine = new PromotionEngineImpl();
+        PromotionEngine promotionEngine = new PromotionEngineImpl(buildPromtionRules());
         assertThat(promotionEngine.calculateTotalOrderValue(buildShoppingCartScenarioA())).isEqualTo(Amount.with().value(BigDecimal.valueOf(100)).build());
+    }
+
+    public static List<PromotionRule> buildPromtionRules() {
+        SingleItemPromotionRule skuAPromotionRule = SingleItemPromotionRule.with().sku('A').quantity(3).discountAmount(Amount.with().value(BigDecimal.valueOf(20)).build()).build();
+        SingleItemPromotionRule skuBPromotionRule = SingleItemPromotionRule.with().sku('B').quantity(2).discountAmount(Amount.with().value(BigDecimal.valueOf(15)).build()).build();
+        return List.of(skuAPromotionRule, skuBPromotionRule);
     }
 
     public static ShoppingCart buildShoppingCartScenarioA() {
