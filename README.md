@@ -15,7 +15,9 @@ Maven 3.6
 
 ## Verifying the promotion engine implementation using Unit tests
 
-PromotionEngineTest class contains test for calculating total order values of the cart items.
+##### PromotionEngineTest class contains test for calculating total order values of the cart items.
+
+
 
 
 
