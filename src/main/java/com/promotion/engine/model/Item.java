@@ -12,4 +12,8 @@ public class Item {
 
     private final int quantity;
 
+    public boolean matchesSku(final char sku) {
+        return this.sku == sku;
+    }
+
 }

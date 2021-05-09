@@ -13,4 +13,8 @@ public class Amount {
     public Amount subtract(final BigDecimal amount) {
         return Amount.with().value(value.subtract(amount)).build();
     }
+
+    public Amount multiply(final BigDecimal amount) {
+        return Amount.with().value(value.multiply(amount)).build();
+    }
 }
