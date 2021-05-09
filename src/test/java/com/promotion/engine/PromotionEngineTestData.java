@@ -19,8 +19,14 @@ final class PromotionEngineTestData {
         return List.of(skuAPromotionRule, skuBPromotionRule);
     }
 
+    static Amount buildAmount(final BigDecimal amount){
+        return Amount.with().value(amount).build();
+    }
     static ShoppingCart buildShoppingCartScenarioA() {
         return ShoppingCart.with().items(List.of(buildItemA(1), buildItemB(1), buildItemC(1))).build();
+    }
+    static ShoppingCart buildShoppingCartScenarioB() {
+        return ShoppingCart.with().items(List.of(buildItemA(5), buildItemB(5), buildItemC(1))).build();
     }
 
     private static Item buildItemA(int quantity) {
