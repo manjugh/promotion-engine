@@ -2,6 +2,7 @@ package com.promotion.engine.model;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 @Builder(builderMethodName = "with")
 @Getter
+@ToString
 public class ShoppingCart {
     private final List<Item> items;
 

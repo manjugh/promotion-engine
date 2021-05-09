@@ -3,12 +3,14 @@ package com.promotion.engine.model;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 
 @Builder(builderMethodName = "with")
 @Getter
 @EqualsAndHashCode
+@ToString
 public class Amount {
     private final BigDecimal value;
 

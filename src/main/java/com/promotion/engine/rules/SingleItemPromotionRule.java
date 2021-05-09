@@ -5,12 +5,14 @@ import com.promotion.engine.model.Item;
 import com.promotion.engine.model.ShoppingCart;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
 @Builder(builderMethodName = "with")
 @Getter
+@ToString
 public class SingleItemPromotionRule implements PromotionRule {
     private final char sku;
 

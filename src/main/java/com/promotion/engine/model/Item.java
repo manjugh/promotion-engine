@@ -2,9 +2,11 @@ package com.promotion.engine.model;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Builder(builderMethodName = "with")
 @Getter
+@ToString
 public class Item {
     private final char sku;
 
