@@ -14,6 +14,9 @@ public class PromotionEngineImpl implements PromotionEngine {
 
     @Override
     public Amount calculateTotalOrderValue(final ShoppingCart shoppingCart) {
+        if(shoppingCart == null || shoppingCart.isEmpty()){
+            throw new IllegalArgumentException("Empty Cart");
+        }
         Amount totalOrderAmount = shoppingCart.calculateTotalOrderValue();
         BigDecimal discount = getTotalDiscountAmount(shoppingCart);
         return totalOrderAmount.subtract(discount);

@@ -26,7 +26,11 @@ public class ShoppingCart {
     }
 
 
-    public Optional<Item> findItem(final char sku){
+    public Optional<Item> findItem(final char sku) {
         return items.stream().filter(item -> item.matchesSku(sku)).findAny();
+    }
+
+    public boolean isEmpty() {
+        return items == null || items.isEmpty();
     }
 }
