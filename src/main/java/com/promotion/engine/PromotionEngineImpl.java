@@ -17,8 +17,7 @@ public class PromotionEngineImpl implements PromotionEngine {
         if (isShoppingCartEmpty(shoppingCart)) {
             throw new IllegalArgumentException("Empty Cart");
         }
-        Amount totalOrderAmount = shoppingCart.calculateTotalOrderValue();
-        return totalOrderAmount.subtract(getTotalDiscountAmount(shoppingCart));
+        return shoppingCart.calculateTotalOrderValue().subtract(getTotalDiscountAmount(shoppingCart));
     }
 
     private boolean isShoppingCartEmpty(final ShoppingCart shoppingCart) {
@@ -26,10 +25,7 @@ public class PromotionEngineImpl implements PromotionEngine {
     }
 
     private BigDecimal getTotalDiscountAmount(final ShoppingCart shoppingCart) {
-        if (promotionRules.isEmpty()) {
-            return BigDecimal.ZERO;
-        }
-        return executePromotionRules(shoppingCart);
+        return promotionRules.isEmpty() ? BigDecimal.ZERO : executePromotionRules(shoppingCart);
     }
 
     private BigDecimal executePromotionRules(final ShoppingCart shoppingCart) {
